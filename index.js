@@ -17,7 +17,7 @@ var z= "outside of function"
 // anonymous function
 
 // 1
-arr = [1,2,3,4,5]
+let arr = [1,2,3,4,5]
 console.log(arr.map((el) => el*el));
 // 2
 ((num1,num2)=> {console.log(num1+num2)} )(2,5);
@@ -84,3 +84,15 @@ function zooInventory(arr) {
 }
 
 console.log(zooInventory(myZoo));
+
+// JS/JSON Objects
+
+const personJS = {firstName:"Milica",lastName:"Baštrica",age:25}
+const personJSON = '{"firstName":"Milica","lastName":"Baštrica","age":25}'
+const personJSONtoJS = JSON.parse(personJSON);
+const personJStoJSON = JSON.stringify(personJS);
+
+let arr1 = [1,2,3,4,5];
+const arrJSON = '{"arr":[1,2,3,4,5]}';
+let arrJS = JSON.parse(arrJSON);
+arrJS.arr.forEach(el => console.log(el));
