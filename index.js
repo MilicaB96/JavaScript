@@ -176,3 +176,19 @@ async function fun1(){
     }
 }
 fun1();
+
+//Promises
+let myPromise2 = new Promise((myResolve,myReject) => {
+    if(Math.ceil(Math.random() * 10) > 5){
+        setTimeout(() => {
+            myResolve("Success!")
+        }, 3000);
+    }
+    else{
+        myReject("Error!")
+    }
+})
+myPromise2.then((data) => console.log(data)).catch((error) => console.log(error));
+
+// promise all
+Promise.all([myPromise,myPromise2]).then((data) => console.log(data)).catch((error) => console.log(error));
