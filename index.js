@@ -192,3 +192,73 @@ myPromise2.then((data) => console.log(data)).catch((error) => console.log(error)
 
 // promise all
 Promise.all([myPromise,myPromise2]).then((data) => console.log(data)).catch((error) => console.log(error));
+
+// JS prototypes and classes
+
+// class
+class Character{
+    static count = 0;
+    constructor(){
+        this.x = Math.round(Math.random()*10);
+        this.y = Math.round(Math.random()*10);
+        Character.count++;
+    }
+    get location(){
+        return [this.x,this.y];
+    }
+    set location(coordinates){
+        if(coordinates[0] > 10 || coordinates[1]> 10 || coordinates[0]<=0 || coordinates[1]<=0){
+            throw "Out of bounds";
+        }
+        this.x = coordinates[0];
+        this.y = coordinates[1];
+    }
+    
+}
+class NonPlayableCharacter extends Character{
+    constructor(x,y){
+        super(x,y)
+    }
+}
+class PlayableCharacter extends Character{
+    constructor(x,y){
+        super(x,y);
+    }
+}
+var geralt = new PlayableCharacter();
+var yennifer = new NonPlayableCharacter();
+var dandelion = new NonPlayableCharacter();
+
+// console.log('Characters created',Character.count);
+
+// prototype
+var Character1 = function(){
+    this.x = Math.round(Math.random()*10);
+    this.y = Math.round(Math.random()*10);   
+}
+Character1.prototype = {
+    get location(){
+        return [this.x,this.y];
+    },
+    set location(coordinates){
+        if(coordinates[0] > 10 || coordinates[1]> 10 || coordinates[0]<=0 || coordinates[1]<=0){
+            throw "Out of bounds";
+        }
+        this.x = coordinates[0];
+        this.y = coordinates[1];
+    }
+}
+var NonPlayableCharacter1 = function(x,y){
+    Character1.call(this,x,y)
+}
+NonPlayableCharacter1.prototype = Object.create(Character1.prototype);
+NonPlayableCharacter1.prototype.constructor = NonPlayableCharacter1;
+var PlayableCharacter1 = function(x,y){
+    Character1.call(this,x,y)
+}
+PlayableCharacter1.prototype = Object.create(Character1.prototype);
+PlayableCharacter1.prototype.constructor = PlayableCharacter1;
+var magi = new PlayableCharacter1();
+var npc1 = new NonPlayableCharacter1();
+var npc2 = new NonPlayableCharacter1();
+
