@@ -39,13 +39,11 @@ colours.forEach(colour => {
 // 1
 const arrayRotate = (arr,step) =>{
     newArr = [];
-    for(let i=arr.length - step;i<arr.length;i++){
-        newArr.push(arr[i])
+    for(let i=0;i<step;i++){
+        arr.unshift(arr.pop()) 
+        
     }
-    for(let i=0;i<arr.length-step;i++){
-        newArr.push(arr[i])   
-    }
-    return newArr;
+    return arr;
 }
 console.log(arrayRotate([1,2,3,4,5],2));
 
@@ -57,12 +55,11 @@ console.log('Sum',sum([1,2,3,4,5]));
 // 3
 
 function numToArray(num) {
-    let arr = [];
-    for(let i=0;i<=num;i++){
-        arr.push(i);
-    }
+    let arr = [num];
+
     for(let i=num-1;i>=0;i--){
         arr.push(i);
+        arr.unshift(i)
     }
     return arr;
 }
@@ -126,7 +123,7 @@ var personFun = function(firstName,lastName,age){
 }
 var milica1 = new personFun("Milica","Baštrica",25)
 
-class person{
+class Person{
     constructor(firstName,lastName,age){
         this.firstName = firstName
         this.lastName = lastName
@@ -156,7 +153,7 @@ console.log(greet2.fun()); // arrow function cant be used with this keyword
 
 
 //promises
-let myPromise = new Promise(function(myResolve,myReject){
+const myPromise = new Promise(function(myResolve,myReject){
     if(Math.ceil(Math.random() * 10) > 5){
         myResolve("Over 50%");
     }
@@ -178,7 +175,7 @@ async function fun1(){
 fun1();
 
 //Promises
-let myPromise2 = new Promise((myResolve,myReject) => {
+const myPromise2 = new Promise((myResolve,myReject) => {
     if(Math.ceil(Math.random() * 10) > 5){
         setTimeout(() => {
             myResolve("Success!")
@@ -232,7 +229,7 @@ var dandelion = new NonPlayableCharacter();
 // console.log('Characters created',Character.count);
 
 // prototype
-var Character1 = function(){
+const Character1 = function(){
     this.x = Math.round(Math.random()*10);
     this.y = Math.round(Math.random()*10);   
 }
@@ -248,12 +245,12 @@ Character1.prototype = {
         this.y = coordinates[1];
     }
 }
-var NonPlayableCharacter1 = function(x,y){
+const NonPlayableCharacter1 = function(x,y){
     Character1.call(this,x,y)
 }
 NonPlayableCharacter1.prototype = Object.create(Character1.prototype);
 NonPlayableCharacter1.prototype.constructor = NonPlayableCharacter1;
-var PlayableCharacter1 = function(x,y){
+const PlayableCharacter1 = function(x,y){
     Character1.call(this,x,y)
 }
 PlayableCharacter1.prototype = Object.create(Character1.prototype);
