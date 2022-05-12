@@ -96,3 +96,83 @@ let arr1 = [1,2,3,4,5];
 const arrJSON = '{"arr":[1,2,3,4,5]}';
 let arrJS = JSON.parse(arrJSON);
 arrJS.arr.forEach(el => console.log(el));
+
+// ES6
+
+//let,var,const
+{
+    let x = 10
+    var y = 5
+}
+try {
+    console.log(x)
+} catch (error) {
+    console.log(error);
+}
+console.log(y)
+const p = 5;
+try {
+    p = 2
+} catch (error) {
+   console.log(error);  
+}
+
+// ES6 classes vs class function
+
+var personFun = function(firstName,lastName,age){
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.age = age;
+}
+var milica1 = new personFun("Milica","Baštrica",25)
+
+class person{
+    constructor(firstName,lastName,age){
+        this.firstName = firstName
+        this.lastName = lastName
+        this.age = age;
+    }
+}
+var milica2 = new person("Milica","Baštrica",25)
+
+// arrow function vs ES5 functon
+const greet1 = {
+    greeting: "Hello!",
+    fun:function(){
+        return this.greeting;
+    }
+}
+console.log(greet1.fun());
+
+const greet2 = {
+    greeting: "Hello!",
+    fun:() => {
+        return this.greeting;
+    }
+}
+console.log(greet2.fun()); // arrow function cant be used with this keyword
+
+// async await vs Promise.then
+
+
+//promises
+let myPromise = new Promise(function(myResolve,myReject){
+    if(Math.ceil(Math.random() * 10) > 5){
+        myResolve("Over 50%");
+    }
+    else{
+        myReject(new Error("Under 50%"))
+    }
+})
+myPromise.then((data) => console.log(data)).catch((error) => console.log(error));
+
+//async await
+async function fun1(){
+    try {
+       let data = await myPromise;
+        console.log('Await:',data);
+    } catch (error) {
+        console.log('Await: ',error)
+    }
+}
+fun1();
